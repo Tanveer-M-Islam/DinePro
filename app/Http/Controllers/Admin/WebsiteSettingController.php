@@ -29,6 +29,12 @@ class WebsiteSettingController extends Controller
             'footer_text' => 'nullable|string',
             'facebook_link' => 'nullable|url',
             'instagram_link' => 'nullable|url',
+            'seo_title' => 'nullable|string|max:255',
+            'seo_description' => 'nullable|string|max:500',
+            'seo_keywords' => 'nullable|string|max:255',
+            'opening_time' => 'nullable|string|max:255',
+            'closing_time' => 'nullable|string|max:255',
+            'announcement' => 'nullable|string',
         ]);
 
         $settings = \App\Models\WebsiteSetting::first();
@@ -70,6 +76,12 @@ class WebsiteSettingController extends Controller
         $settings->footer_text = $validated['footer_text'];
         $settings->facebook_link = $validated['facebook_link'];
         $settings->instagram_link = $validated['instagram_link'];
+        $settings->seo_title = $validated['seo_title'] ?? null;
+        $settings->seo_description = $validated['seo_description'] ?? null;
+        $settings->seo_keywords = $validated['seo_keywords'] ?? null;
+        $settings->opening_time = $validated['opening_time'] ?? null;
+        $settings->closing_time = $validated['closing_time'] ?? null;
+        $settings->announcement = $validated['announcement'] ?? null;
         $settings->save();
 
         return redirect()->back()->with('success', 'Settings updated successfully.');

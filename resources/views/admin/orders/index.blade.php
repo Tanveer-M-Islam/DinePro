@@ -78,7 +78,9 @@
             <tbody class="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-800">
                 @foreach($orders as $order)
                 <tr>
-                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">#{{ $order->id }}</td>
+                    <td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ $order->order_number ?? '#' . $order->id }}
+                    </td>
                     <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
                         {{ $order->customer_name }}<br>
                         <span class="text-xs">{{ $order->phone }}</span>
@@ -127,7 +129,7 @@
                         <div class="sm:flex sm:items-start w-full">
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                                 <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white" id="modal-title">
-                                    Order #<span x-text="order.id"></span> Details
+                                    Order <span x-text="order.order_number || ('#' + order.id)"></span> Details
                                 </h3>
                                 
                                 <!-- Customer Info -->
@@ -158,11 +160,14 @@
                                         </template>
                                     </ul>
                                     <div class="mt-2 text-right border-t border-gray-200 dark:border-gray-700 pt-2 flex justify-between items-center">
-                                        <form :action="`{{ route('admin.orders.index') }}/${order.id}`" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-xs text-red-600 hover:text-red-900 border border-red-200 bg-red-50 rounded px-2 py-1">Delete Order</button>
-                                        </form>
+                                        <div class="flex gap-2">
+                                            <form :action="`{{ route('admin.orders.index') }}/${order.id}`" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-xs text-red-600 hover:text-red-900 border border-red-200 bg-red-50 rounded px-2 py-1">Delete Order</button>
+                                            </form>
+                                            <a :href="`{{ url('admin/orders') }}/${order.id}/invoice`" class="text-xs text-blue-600 hover:text-blue-900 border border-blue-200 bg-blue-50 rounded px-2 py-1">Download Invoice</a>
+                                        </div>
                                         <p class="text-base font-bold text-gray-900 dark:text-white">Total: $<span x-text="order.total_amount"></span></p>
                                     </div>
                                 </div>

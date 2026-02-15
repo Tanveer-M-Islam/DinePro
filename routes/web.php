@@ -13,6 +13,14 @@ Route::get('/book-table', [\App\Http\Controllers\Public\BookTableController::cla
 Route::post('/reservation', [\App\Http\Controllers\Public\ReservationController::class, 'store'])->name('reservation.store');
 Route::post('/reviews', [\App\Http\Controllers\Public\ReviewController::class, 'store'])->name('reviews.store');
 
+Route::get('/announcement', function () {
+    $settings = \App\Models\WebsiteSetting::first();
+    if (!$settings || empty($settings->announcement)) {
+        return redirect()->route('home');
+    }
+    return view('public.announcement', compact('settings'));
+})->name('announcement');
+
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -23,6 +31,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('menu-items', \App\Http\Controllers\Admin\MenuItemController::class);
+        Route::get('orders/{order}/invoice', [\App\Http\Controllers\Admin\OrderController::class, 'downloadInvoice'])->name('orders.invoice');
         Route::resource('orders', \App\Http\Controllers\Admin\OrderController::class);
         Route::resource('reservations', \App\Http\Controllers\Admin\ReservationController::class)->only(['index', 'update', 'destroy']);
         Route::resource('reviews', \App\Http\Controllers\Admin\CustomerReviewController::class);

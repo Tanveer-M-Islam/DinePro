@@ -3,7 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'DinePro') }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>{{ optional($settings)->seo_title ? $settings->seo_title : config('app.name', 'DinePro') }}</title>
+    <meta name="description" content="{{ optional($settings)->seo_description ?? 'Welcome to ' . (optional($settings)->restaurant_name ?? 'DinePro') }}">
+    <meta name="keywords" content="{{ optional($settings)->seo_keywords ?? 'restaurant, dining, food' }}">
+    <meta property="og:title" content="{{ optional($settings)->seo_title ? $settings->seo_title : (optional($settings)->restaurant_name ?? 'DinePro') }}">
+    <meta property="og:description" content="{{ optional($settings)->seo_description ?? '' }}">
+    @if(optional($settings)->hero_image)
+    <meta property="og:image" content="{{ asset('storage/' . $settings->hero_image) }}">
+    @endif
+    <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Theme Config -->
     @php

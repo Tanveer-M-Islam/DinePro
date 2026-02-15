@@ -72,6 +72,27 @@
                         </div>
                     </div>
 
+                    <div class="sm:col-span-2">
+                        <label for="opening_time" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Opening Time</label>
+                        <div class="mt-1">
+                            <input type="text" name="opening_time" id="opening_time" value="{{ old('opening_time', $settings->opening_time ?? '') }}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm p-2 border" placeholder="e.g. 10:00 AM">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="closing_time" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Closing Time</label>
+                        <div class="mt-1">
+                            <input type="text" name="closing_time" id="closing_time" value="{{ old('closing_time', $settings->closing_time ?? '') }}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm p-2 border" placeholder="e.g. 10:00 PM">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                        <label for="announcement" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Announcement</label>
+                        <div class="mt-1">
+                            <textarea id="announcement" name="announcement" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm p-2 border" placeholder="Enter important announcement here...">{{ old('announcement', $settings->announcement ?? '') }}</textarea>
+                        </div>
+                    </div>
+
                     <!-- Contact & About -->
                         <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Contact & About</h3>
                     </div>
@@ -140,6 +161,34 @@
                         <label for="instagram_link" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Instagram Link</label>
                         <div class="mt-1">
                             <input type="url" name="instagram_link" id="instagram_link" value="{{ $settings->instagram_link }}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm p-2 border">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-6">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">SEO Settings</h3>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Optimize your homepage for search engines.</p>
+                
+                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                    <div class="sm:col-span-4">
+                        <label for="seo_title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">SEO Title</label>
+                        <div class="mt-1">
+                            <input type="text" name="seo_title" id="seo_title" value="{{ old('seo_title', $settings->seo_title ?? '') }}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm p-2 border" placeholder="e.g. DinePro - Best Italian Restaurant in Town">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                        <label for="seo_description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">SEO Description</label>
+                        <div class="mt-1">
+                            <textarea id="seo_description" name="seo_description" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm p-2 border" placeholder="Brief summary of your restaurant for search results.">{{ old('seo_description', $settings->seo_description ?? '') }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-6">
+                        <label for="seo_keywords" class="block text-sm font-medium text-gray-700 dark:text-gray-300">SEO Keywords</label>
+                        <div class="mt-1">
+                            <input type="text" name="seo_keywords" id="seo_keywords" value="{{ old('seo_keywords', $settings->seo_keywords ?? '') }}" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white sm:text-sm p-2 border" placeholder="comma, separated, keywords, e.g. italian, pasta, pizza, fine dining">
                         </div>
                     </div>
                 </div>

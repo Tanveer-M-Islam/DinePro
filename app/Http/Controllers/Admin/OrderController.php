@@ -17,6 +17,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'order_number' => 'nullable|string|unique:orders,order_number|max:50',
             'customer_name' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:20',
             'items' => 'required|array|min:1',
@@ -42,8 +43,9 @@ class OrderController extends Controller
         }
 
         $order = Order::create([
+            'order_number' => $validated['order_number'] ?? 'ORD-' . strtoupper(uniqid()), // Auto-generate if empty
             'customer_name' => $validated['customer_name'] ?? 'Walk-in Customer', // Default if empty
-            'phone' => $validated['phone'],
+            'phone' => $validated['phone'] ?? 'N/A', // Default if empty
             'total_amount' => $totalAmount,
             'status' => 'completed', // Default to completed for manual orders
             'payment_status' => 'paid', // Default to paid for manual orders
@@ -67,6 +69,7 @@ class OrderController extends Controller
             })
             ->when($search, function ($query, $search) {
                 return $query->where('id', 'like', "%{$search}%")
+                             ->orWhere('order_number', 'like', "%{$search}%")
                              ->orWhere('customer_name', 'like', "%{$search}%")
                              ->orWhere('phone', 'like', "%{$search}%");
             })
@@ -85,6 +88,13 @@ class OrderController extends Controller
     {
         $order->delete();
         return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully.');
+    }
+
+    public function downloadInvoice(Order $order)
+    {
+        $settings = \App\Models\WebsiteSetting::first();
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.orders.invoice', compact('order', 'settings'));
+        return $pdf->download('invoice-' . $order->id . '.pdf');
     }
 
     public function update(Request $request, Order $order)

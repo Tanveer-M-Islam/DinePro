@@ -28,6 +28,22 @@
                     </a>
                 </div>
             </div>
+            
+            @if($settings && ($settings->opening_time || $settings->closing_time || $settings->announcement))
+            <div class="mt-8 hero-content flex flex-col items-center space-y-2">
+                @if($settings->opening_time && $settings->closing_time)
+                    <p class="text-gray-300 text-lg">
+                        <span class="font-semibold text-white">Open:</span> {{ $settings->opening_time }} - {{ $settings->closing_time }}
+                    </p>
+                @endif
+                
+                @if($settings->announcement)
+                    <a href="{{ route('announcement') }}" class="text-primary hover:text-white transition-colors underline decoration-dotted underline-offset-4 text-lg" style="color: var(--color-primary)">
+                        Announcement
+                    </a>
+                @endif
+            </div>
+            @endif
         </div>
     </div>
 
