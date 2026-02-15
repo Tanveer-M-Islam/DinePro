@@ -42,3 +42,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('settings/image/{type}', [\App\Http\Controllers\Admin\WebsiteSettingController::class, 'deleteImage'])->name('settings.delete-image');
     });
 });
+
+// Fallback login route to prevent 'Route [login] not defined' errors
+Route::get('/login', function () {
+    return redirect()->route('admin.login');
+})->name('login');

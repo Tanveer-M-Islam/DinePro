@@ -19,15 +19,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        \Illuminate\Support\Facades\Schema::defaultStringLength(191);
+
         try {
-            // Use a view composer or simply share if table exists
+            $settings = null;
             if (\Illuminate\Support\Facades\Schema::hasTable('website_settings')) {
                 $settings = \App\Models\WebsiteSetting::first();
-                // If no settings exist yet (fresh install), use defaults or null
-                \Illuminate\Support\Facades\View::share('settings', $settings);
             }
+            // Share settings globally, even if null, to avoid undefined variable errors
+            \Illuminate\Support\Facades\View::share('settings', $settings);
         } catch (\Exception $e) {
             // Failsafe for initial migration
+             \Illuminate\Support\Facades\View::share('settings', null);
         }
     }
 }

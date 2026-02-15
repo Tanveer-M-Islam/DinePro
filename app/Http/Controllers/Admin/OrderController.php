@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
+/**
+ * OrderController
+ *
+ * Handles all order-related operations in the admin panel, including
+ * listing, creating, updating, and deleting orders, as well as invoice generation.
+ */
 class OrderController extends Controller
 {
     public function create()

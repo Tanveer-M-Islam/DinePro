@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,13 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-            WebsiteSettingSeeder::class,
-            CategorySeeder::class,
-            MenuItemSeeder::class,
-            ReservationSeeder::class,
-            OrderSeeder::class,
+        // User::factory(10)->create();
+
+        // Admin User
+        \App\Models\User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+        ]);
+
+        // Create initial website settings to prevent null errors, but keep them empty/default
+        \App\Models\WebsiteSetting::create([
+            'restaurant_name' => 'DinePro',
+            'contact_email' => 'admin@example.com',
         ]);
     }
 }
