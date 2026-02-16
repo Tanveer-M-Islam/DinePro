@@ -16,12 +16,21 @@
     <meta property="og:type" content="website">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Theme Config -->
+    {{-- 
+        This section loads the selected theme from the database (via $settings)
+        or falls back to the default 'elegant_dark' theme. 
+        Theme definitions are located in config/themes.php
+    --}}
     @php
         $themeName = optional($settings)->theme_name ?? 'elegant_dark';
         $theme = config("themes.$themeName") ?? config('themes.elegant_dark');
     @endphp
     
     <style>
+        /* 
+           Dynamic CSS Variables based on the selected theme.
+           You can use these variables throughout your CSS/Tailwind classes.
+        */
         :root {
             --color-primary: {{ $theme['colors']['primary'] }};
             --color-secondary: {{ $theme['colors']['secondary'] }};

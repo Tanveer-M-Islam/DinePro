@@ -11,6 +11,7 @@ Route::get('/menu', [\App\Http\Controllers\Public\MenuController::class, 'index'
 Route::get('/contact', [\App\Http\Controllers\Public\ContactController::class, 'index'])->name('contact.index');
 Route::get('/book-table', [\App\Http\Controllers\Public\BookTableController::class, 'index'])->name('book-table.index');
 Route::post('/reservation', [\App\Http\Controllers\Public\ReservationController::class, 'store'])->name('reservation.store');
+Route::get('/reviews', [\App\Http\Controllers\Public\ReviewController::class, 'index'])->name('reviews.index');
 Route::post('/reviews', [\App\Http\Controllers\Public\ReviewController::class, 'store'])->name('reviews.store');
 
 Route::get('/announcement', function () {

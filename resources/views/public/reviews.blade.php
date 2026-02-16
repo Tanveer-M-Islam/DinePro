@@ -1,146 +1,21 @@
 @extends('layouts.public')
 
 @section('content')
-    <!-- Hero Section -->
-    <div class="relative bg-gray-900 overflow-hidden">
-        <div class="absolute inset-0">
-            @if($settings && $settings->hero_image)
-                <img class="w-full h-full object-cover" src="{{ asset('storage/' . $settings->hero_image) }}" alt="Restaurant Background">
-            @else
-                <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="Restaurant Background">
-            @endif
-            <div class="absolute inset-0 bg-gray-900/60 mix-blend-multiply"></div>
-        </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 text-center hero-section">
-            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl hero-content">
-                {{ $settings->hero_title ?? 'Welcome to DinePro' }}
-            </h1>
-            <p class="mt-6 text-xl text-gray-300 max-w-3xl mx-auto hero-content">
-                {{ $settings->hero_subtitle ?? 'Experience the best dining with our exquisite menu and cozy atmosphere.' }}
-            </p>
-            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center hero-content">
-                <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
-                    <a href="{{ route('menu.index') }}" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-900 bg-white hover:bg-gray-50 sm:px-8 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                        View Menu
-                    </a>
-                    <a href="{{ route('book-table.index') }}" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:opacity-90 sm:px-8 transform transition-all duration-300 hover:scale-105 hover:shadow-lg" style="background-color: var(--color-primary)">
-                        Book a Table
-                    </a>
-                </div>
-            </div>
-            
-            @if($settings && ($settings->opening_time || $settings->closing_time || $settings->announcement))
-            <div class="mt-8 hero-content flex flex-col items-center space-y-2">
-                @if($settings->opening_time && $settings->closing_time)
-                    <p class="text-gray-300 text-lg">
-                        <span class="font-semibold text-white">Open:</span> {{ $settings->opening_time }} - {{ $settings->closing_time }}
-                    </p>
-                @endif
-                
-                @if($settings->announcement)
-                    <a href="{{ route('announcement') }}" class="text-primary hover:text-white transition-colors underline decoration-dotted underline-offset-4 text-lg" style="color: var(--color-primary)">
-                        Announcement
-                    </a>
-                @endif
-            </div>
-            @endif
-        </div>
-    </div>
-
-    <!-- Featured Dishes -->
-    <div class="bg-surface py-16 sm:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-base font-semibold tracking-wide uppercase text-primary" style="color: var(--color-primary)">Our Specialties</h2>
-                <p class="mt-1 text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl" style="color: var(--color-text)">Featured Dishes</p>
-                <p class="max-w-xl mt-5 mx-auto text-xl text-muted">Hand-picked favorites from our chef.</p>
-            </div>
-            
-            <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach($featuredItems as $item)
-                <div class="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="aspect-w-3 aspect-h-2 bg-gray-200 group-hover:opacity-75 relative h-64 overflow-hidden">
-                        @if($item->image)
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                        @else
-                            <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
-                                <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                        @endif
-                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold shadow-sm text-gray-900">
-                            ${{ number_format($item->price, 2) }}
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">
-                            {{ $item->name }}
-                        </h3>
-                        <p class="mt-3 text-base text-gray-500 line-clamp-2">{{ $item->description }}</p>
-
-                    </div>
-                </div>
-                @endforeach
-            </div>
-             <div class="mt-10 text-center">
-                <a href="{{ route('menu.index') }}" class="inline-flex items-center text-primary font-semibold hover:underline transform transition-all duration-200 hover:scale-105" style="color: var(--color-primary)">
-                    View Full Menu <span aria-hidden="true"> &rarr;</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- About Section -->
-    <div id="about" class="bg-white py-16 sm:py-24 lg:py-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                <!-- Content -->
-                <div class="lg:pr-8">
-                    <h2 class="text-base font-semibold tracking-wide uppercase text-primary" style="color: var(--color-primary)">About Us</h2>
-                    <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl text-gray-900">
-                        {{ $settings->restaurant_name ?? 'DinePro' }}
-                    </h3>
-                    <p class="mt-4 text-lg text-gray-500 text-justify">
-                        {{ $settings->about_text ?? 'We are dedicated to serving the finest food with the best ingredients. Our chefs are passionate about creating dishes that not only taste good but also look good.' }}
-                    </p>
-                    <div class="mt-8">
-                        <a href="{{ route('menu.index') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg" style="background-color: var(--color-primary)">
-                            View Menu
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Image -->
-                <div class="mt-12 lg:mt-0 relative">
-                    <div class="relative rounded-2xl overflow-hidden shadow-xl aspect-w-16 aspect-h-9 lg:aspect-none lg:h-full">
-                        @if($settings && $settings->about_image)
-                            <img class="w-full h-full object-cover rounded-2xl transform transition-transform duration-500 hover:scale-105" src="{{ asset('storage/' . $settings->about_image) }}" alt="About {{ $settings->restaurant_name }}">
-                        @else
-                            <img class="w-full h-full object-cover rounded-2xl transform transition-transform duration-500 hover:scale-105" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Restaurant Interior">
-                        @endif
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent mix-blend-multiply rounded-2xl"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Customer Reviews Section -->
     <div class="bg-surface py-16 sm:py-24" x-data="{ showReviewModal: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-base font-semibold tracking-wide uppercase text-primary" style="color: var(--color-primary)">Testimonials</h2>
                 <p class="mt-1 text-4xl font-extrabold sm:text-5xl sm:tracking-tight lg:text-6xl" style="color: var(--color-text)">What Our Customers Say</p>
-                <div class="mt-6 flex justify-center gap-4">
+                <div class="mt-6">
                     <button @click="showReviewModal = true" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg" style="background-color: var(--color-primary)">
                         Write a Review
                     </button>
-                    <a href="{{ route('reviews.index') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                        View More
+                    <a href="{{ route('home') }}" class="ml-4 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        Back to Home
                     </a>
                 </div>
             </div>
+            
             <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach($reviews as $review)
                 <div class="bg-white rounded-2xl p-8 shadow-lg relative border border-gray-100 dark:border-gray-800">
@@ -162,6 +37,10 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
+
+            <div class="mt-10">
+                {{ $reviews->links() }}
             </div>
         </div>
 

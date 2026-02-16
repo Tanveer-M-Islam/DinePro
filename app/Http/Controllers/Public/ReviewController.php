@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+    public function index()
+    {
+        $reviews = \App\Models\CustomerReview::where('is_featured', true)->where('status', true)->latest()->paginate(12);
+        return view('public.reviews', compact('reviews'));
+    }
+
     public function store(\Illuminate\Http\Request $request)
     {
         $request->validate([

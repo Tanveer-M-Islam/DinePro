@@ -1,6 +1,39 @@
 <?php
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Themes Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here you can define the themes available for your application.
+    | Each theme is an array with the following structure:
+    |
+    | 'theme_key' => [
+    |     'name' => 'Human Readable Name',
+    |     'colors' => [
+    |         'primary' => '#hex',    // Main brand color
+    |         'secondary' => '#hex',  // Secondary brand color (often darker)
+    |         'background' => '#hex', // Site background
+    |         'surface' => '#hex',    // Cards / Sections background
+    |         'text' => '#hex',       // Main text color (usually contrast to background)
+    |         'text_muted' => '#hex', // Secondary text color
+    |         'accent' => '#hex',     // Highlight color for buttons/links
+    |     ],
+    |     'fonts' => [
+    |         'heading' => 'Font Name', // Google Font name for headings
+    |         'body' => 'Font Name',    // Google Font name for body text
+    |     ],
+    |     'hero_style' => 'style',      // Options: 'centered', 'split', 'overlay', 'gradient', 'warm', 'organic', 'bold', 'calm', 'vibrant', 'industrial'
+    | ],
+    |
+    | To add a new theme, simply copy an existing block, give it a unique key,
+    | and change the values. The new theme will automatically appear in the
+    | admin panel.
+    |
+    */
+
     'elegant_dark' => [
         'name' => 'Elegant Midnight',
         'colors' => [

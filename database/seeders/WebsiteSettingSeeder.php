@@ -18,6 +18,8 @@ class WebsiteSettingSeeder extends Seeder
             'contact_email' => 'info@dinepro.com',
             'phone' => '+1 234 567 890',
             'address' => '123 Restaurant St, Food City, FC 12345',
+            'opening_time' => '10:00 AM',
+            'closing_time' => '10:00 PM',
         ]);
     }
 }

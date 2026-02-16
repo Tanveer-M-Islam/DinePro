@@ -93,8 +93,9 @@
                         </div>
                     </div>
 
-                    <!-- Contact & About -->
+                    <div class="sm:col-span-6 border-t border-gray-200 dark:border-gray-700 pt-6">
                         <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Contact & About</h3>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Manage your contact information and about section.</p>
                     </div>
 
                     <!-- About Image -->
@@ -164,13 +165,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
             
-            <div class="pt-6">
+            <div class="sm:col-span-6 border-t border-gray-200 dark:border-gray-700 pt-6">
                 <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">SEO Settings</h3>
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Optimize your homepage for search engines.</p>
-                
-                <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            </div>
                     <div class="sm:col-span-4">
                         <label for="seo_title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">SEO Title</label>
                         <div class="mt-1">
@@ -192,7 +191,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
 
