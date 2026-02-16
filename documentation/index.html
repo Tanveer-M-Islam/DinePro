@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DinePro - Documentation</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <a href="#overview" class="logo">DinePro <span style="font-size: 0.5em; opacity: 0.5;">Docs</span></a>
+        <ul class="nav-links">
+            <li><a href="#overview" class="active"><i class="fas fa-home"></i> Overview</a></li>
+            <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+            <li><a href="#technology"><i class="fas fa-code"></i> Technology Stack</a></li>
+            <li><a href="#installation"><i class="fas fa-download"></i> Installation Guide</a></li>
+            <li><a href="#deployment"><i class="fas fa-server"></i> Deployment Guide</a></li>
+            <li><a href="#folder-structure"><i class="fas fa-folder-tree"></i> Folder Structure</a></li>
+            <li><a href="#database"><i class="fas fa-database"></i> Database Structure</a></li>
+            <li><a href="#admin-panel"><i class="fas fa-user-cog"></i> Admin Panel Guide</a></li>
+            <li><a href="#theme-customization"><i class="fas fa-paint-brush"></i> Theme Customization</a></li>
+            <li><a href="#api"><i class="fas fa-network-wired"></i> API Endpoints</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Overview -->
+        <section id="overview">
+            <h1>Project Overview</h1>
+            <p><strong>DinePro</strong> is a modern, responsive Restaurant Management System built with Laravel. It provides a complete solution for restaurants to manage menus, reservations, customer reviews, and website settings through an intuitive admin panel.</p>
+            <p>The frontend offers an elegant, user-friendly interface for customers to browse the menu, book tables, and read reviews.</p>
+        </section>
+
+        <!-- Features -->
+        <section id="features">
+            <h2>Features List</h2>
+            <ul>
+                <li><strong>Dynamic Menu Management:</strong> Create categories and menu items with images, prices, and descriptions.</li>
+                <li><strong>Table Reservation System:</strong> Customers can book tables online; admins can manage reservations.</li>
+                <li><strong>Customer Reviews:</strong> Collect and display customer testimonials (with admin moderation).</li>
+                <li><strong>Multi-Theme Support:</strong> Admin can switch between multiple pre-defined themes (Elegant Midnight, Sunset Glow, etc.).</li>
+                <li><strong>SEO Optimization:</strong> Configurable SEO titles, keywords, and descriptions.</li>
+                <li><strong>Responsive Design:</strong> Fully optimized for mobile, tablet, and desktop devices.</li>
+                <li><strong>Admin Dashboard:</strong> Comprehensive control over all website content and settings.</li>
+            </ul>
+        </section>
+
+        <!-- Technology Stack -->
+        <section id="technology">
+            <h2>Technology Stack</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                </tr>
+                <tr>
+                    <td>Backend Framework</td>
+                    <td>Laravel 11 (PHP 8.2+)</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>MySQL</td>
+                </tr>
+                <tr>
+                    <td>Frontend</td>
+                    <td>Blade Templates, Tailwind CSS, Alpine.js</td>
+                </tr>
+                <tr>
+                    <td>Icons</td>
+                    <td>FontAwesome</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation">
+            <h2>Installation Guide (Local Setup)</h2>
+            <div class="alert">
+                <strong>Prerequisites:</strong> ensure you have PHP >= 8.2, Composer, and MySQL installed on your machine.
+            </div>
+
+            <h3>1. Clone or Extract Project</h3>
+            <p>Extract the project files to your local server directory (e.g., <code>htdocs</code> or <code>www</code>).</p>
+
+            <h3>2. Install Dependencies</h3>
+            <pre><code>composer install</code></pre>
+            <p>If you have node dependencies (for development):</p>
+            <pre><code>npm install</code></pre>
+
+            <h3>3. Configure Environment</h3>
+            <p>Copy the example environment file and create your own <code>.env</code> file:</p>
+            <pre><code>cp .env.example .env</code></pre>
+            <p>Open <code>.env</code> and configure your database settings:</p>
+            <pre><code>DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=dinepro
+DB_USERNAME=root
+DB_PASSWORD=</code></pre>
+
+            <h3>4. Generate Application Key</h3>
+            <pre><code>php artisan key:generate</code></pre>
+
+            <h3>5. Setup Database</h3>
+            <p>Create a MySQL database named <code>dinepro</code> (or whatever you specified in .env). Then run migrations and seeders:</p>
+            <pre><code>php artisan migrate --seed</code></pre>
+            <p><em>The <code>--seed</code> flag populates the database with default admin user and initial settings.</em></p>
+
+            <h3>6. Link Storage</h3>
+            <pre><code>php artisan storage:link</code></pre>
+
+            <h3>7. Serve Application</h3>
+            <pre><code>php artisan serve</code></pre>
+            <p>Access the site at <code>http://localhost:8000</code>.</p>
+        </section>
+
+        <!-- Deployment -->
+        <section id="deployment">
+            <h2>Shared Hosting Deployment Guide</h2>
+            
+            <h3>1. Upload Files</h3>
+            <p>Upload all project files to the root directory of your hosting account (e.g., above <code>public_html</code>). Let's call this folder <code>dinepro_core</code>.</p>
+
+            <h3>2. Move Public Assets</h3>
+            <p>Move the contents of the <code>public</code> folder to your domain's public directory (e.g., <code>public_html</code>).</p>
+
+            <h3>3. Update index.php</h3>
+            <p>Edit <code>public_html/index.php</code> to point to the correct paths:</p>
+            <pre><code>require __DIR__.'/../dinepro_core/vendor/autoload.php';
+$app = require_once __DIR__.'/../dinepro_core/bootstrap/app.php';</code></pre>
+
+            <h3>4. Set Permissions</h3>
+            <p>Ensure the following directories are writable (755 or 775):</p>
+            <ul>
+                <li><code>dinepro_core/storage</code></li>
+                <li><code>dinepro_core/bootstrap/cache</code></li>
+            </ul>
+
+            <h3>5. Configure .env</h3>
+            <p>Update <code>dinepro_core/.env</code> with your production database credentials and set:</p>
+            <pre><code>APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.com</code></pre>
+
+            <h3>6. Setup Database</h3>
+            <p>Export your local database and import it via phpMyAdmin on your hosting server.</p>
+        </section>
+
+        <!-- Folder Structure -->
+        <section id="folder-structure">
+            <h2>Folder Structure Explanation</h2>
+            <pre><code>DinePro/
+├── app/                  # Application Logic (Controllers, Models)
+│   ├── Http/Controllers  # Admin & Public Controllers
+│   └── Models            # Eloquent Data Models
+├── config/               # Configuration files (themes.php, app.php)
+├── database/             # Migrations & Seeders
+├── public/               # Publicly accessible assets (CSS, JS, Images)
+├── resources/            # Views (Blade templates)
+│   ├── views/admin       # Admin Panel Views
+│   ├── views/public      # Frontend Public Views
+│   └── views/layouts     # Layout files
+├── routes/               # Web Routes
+└── storage/              # Uploaded files and logs</code></pre>
+        </section>
+
+        <!-- Database -->
+        <section id="database">
+            <h2>Database Structure</h2>
+            <table>
+                <tr>
+                    <th>Table</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>users</code></td>
+                    <td>Admin users authentication.</td>
+                </tr>
+                <tr>
+                    <td><code>categories</code></td>
+                    <td>Menu categories (e.g., Starters, Main Course).</td>
+                </tr>
+                <tr>
+                    <td><code>menu_items</code></td>
+                    <td>Food items with price, description, and image.</td>
+                </tr>
+                <tr>
+                    <td><code>reservations</code></td>
+                    <td>Table booking records.</td>
+                </tr>
+                <tr>
+                    <td><code>customer_reviews</code></td>
+                    <td>User-submitted reviews and ratings.</td>
+                </tr>
+                <tr>
+                    <td><code>website_settings</code></td>
+                    <td>Global settings (Logo, Hero Content, SEO, Contacts).</td>
+                </tr>
+                <tr>
+                    <td><code>orders</code></td>
+                    <td>(Optional) Order tracking entries.</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin-panel">
+            <h2>Admin Panel Guide</h2>
+            <p>Access the admin panel at <code>/admin/login</code>.</p>
+            
+            <h3>Default Credentials</h3>
+            <ul>
+                <li><strong>Email:</strong> admin@example.com</li>
+                <li><strong>Password:</strong> password</li>
+            </ul>
+
+            <h3>Managing Content</h3>
+            <ul>
+                <li><strong>Menu Items:</strong> Go to <em>Menu Management</em> to add/edit categories and items. Ensure to verify categories are active.</li>
+                <li><strong>Reservations:</strong> View and manage table bookings under <em>Reservations</em>.</li>
+                <li><strong>Website Settings:</strong> Go to <em>Settings</em> to change:
+                    <ul>
+                        <li>Logo & Favicon</li>
+                        <li>Hero Section (Background Image, Title, Subtitle)</li>
+                        <li>Contact Information (Phone, Email, Address, Social Links)</li>
+                        <li>SEO Metadata (Title, Description, Keywords)</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Theme Customization -->
+        <section id="theme-customization">
+            <h2>Theme Customization Guide</h2>
+            
+            <h3>Switching Themes</h3>
+            <p>Log in to the Admin Panel, go to <strong>Themes</strong>, and select a predefined theme (e.g., Sunset Glow, Elegant Midnight).</p>
+
+            <h3>Modifying Themes</h3>
+            <p>Theme configurations are stored in <code>config/themes.php</code>.</p>
+            <p>To change colors or fonts:</p>
+            <ol>
+                <li>Open <code>config/themes.php</code>.</li>
+                <li>Locate the theme array (e.g., <code>'elegant_midnight'</code>).</li>
+                <li>Update the hex codes in the <code>'colors'</code> array.</li>
+            </ol>
+            <pre><code>'elegant_dark' => [
+    'name' => 'Elegant Midnight',
+    'colors' => [
+        'primary' => '#fbbf24', // Change this hex code
+        'background' => '#111827',
+        // ...
+    ],
+]</code></pre>
+            <p>CSS variables in the frontend are automatically generated from this configuration.</p>
+        </section>
+
+        <!-- API -->
+        <section id="api">
+            <h2>API Endpoints</h2>
+            <p>The application primarily uses server-side rendering with Blade templates. However, the following routes serve as endpoints for form submissions:</p>
+            
+            <h3>Public Routes</h3>
+            <table>
+                <tr>
+                    <th>Method</th>
+                    <th>URI</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td><code>/menu</code></td>
+                    <td>Fetch menu page.</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td><code>/reservation</code></td>
+                    <td>Submit a table reservation.</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td><code>/reviews</code></td>
+                    <td>Submit a customer review.</td>
+                </tr>
+            </table>
+        </section>
+
+    </main>
+
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Active link highlighting on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(li => {
+                li.classList.remove('active');
+                if (li.getAttribute('href').includes(current)) {
+                    li.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
