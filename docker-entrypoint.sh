@@ -39,6 +39,9 @@ php artisan cache:clear
 php artisan view:cache
 php artisan route:cache
 
+echo "🔗 Linking Storage..."
+php artisan storage:link
+
 echo "✅ Deployment Ready."
 echo "🔌 Starting Apache..."
 
