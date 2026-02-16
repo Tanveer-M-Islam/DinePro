@@ -7,6 +7,9 @@ echo "🚀 Starting DinePro..."
 # We export these to override any .env file that might have been copied
 export DB_CONNECTION=sqlite
 export DB_DATABASE=/var/www/html/database/database.sqlite
+export SESSION_DRIVER=file
+export SESSION_SECURE_COOKIE=false
+export TRUSTPROXIES=*
 
 echo "🔧 Configuring Database..."
 # Ensure database directory is writable
