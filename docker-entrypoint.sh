@@ -8,11 +8,6 @@ echo "🚀 Starting DinePro..."
 export DB_CONNECTION=sqlite
 export DB_DATABASE=/var/www/html/database/database.sqlite
 
-echo "🧹 Clearing Config Cache..."
-rm -f .env
-php artisan config:clear
-php artisan cache:clear
-
 echo "🔧 Configuring Database..."
 # Ensure database directory is writable
 if [ ! -d "/var/www/html/database" ]; then
@@ -27,6 +22,11 @@ fi
 # Fix permissions
 chown -R www-data:www-data /var/www/html/database
 chmod -R 775 /var/www/html/database
+
+echo "🧹 Clearing Config Cache..."
+rm -f .env
+php artisan config:clear
+php artisan cache:clear
 
 echo "🗄️ Running Migrations & Seeding..."
 # Force migration and seed
