@@ -1,5 +1,14 @@
 # DinePro - Modern Restaurant Management System
 
+> **Easy Deployment:** This project includes a `Dockerfile` for easy deployment on **Railway**, **Render**, or any Docker-supported platform.
+
+## 🚀 Quick Deploy (The Easy Way)
+1. **Push to GitHub.**
+2. **Deploy on Railway/Render:** Select "Docker" as the build method (or let it auto-detect the Dockerfile).
+3. **Set Environment Variables:**
+   - `APP_KEY`: (Generate locally with `php artisan key:generate --show`)
+   - `DB_CONNECTION`: `sqlite` (For demo) or `mysql` (For production)
+
 DinePro is a comprehensive and modern restaurant management solution designed to streamline your restaurant's operations. From managing menus and orders to handling reservations and customer reviews, DinePro offers a robust set of features wrapped in a stunning, responsive design.
 
 ## Key Features
