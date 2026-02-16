@@ -13,20 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // Admin User
-        \App\Models\User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-        ]);
-
-        // Create initial website settings to prevent null errors, but keep them empty/default
-        \App\Models\WebsiteSetting::create([
-            'restaurant_name' => 'DinePro',
-            'contact_email' => 'admin@example.com',
+        $this->call([
+            UserSeeder::class,
+            WebsiteSettingSeeder::class,
+            CategorySeeder::class,
+            MenuItemSeeder::class,
+            ReservationSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }

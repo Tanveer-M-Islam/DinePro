@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DinePro - Documentation</title>
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    
+
     <!-- Sidebar -->
     <nav class="sidebar">
         <a href="#overview" class="logo">DinePro <span style="font-size: 0.5em; opacity: 0.5;">Docs</span></a>
@@ -32,22 +35,29 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        
+
         <!-- Overview -->
         <section id="overview">
             <h1>Project Overview</h1>
-            <p><strong>DinePro</strong> is a modern, responsive Restaurant Management System built with Laravel. It provides a complete solution for restaurants to manage menus, reservations, customer reviews, and website settings through an intuitive admin panel.</p>
-            <p>The frontend offers an elegant, user-friendly interface for customers to browse the menu, book tables, and read reviews.</p>
+            <p><strong>DinePro</strong> is a modern, responsive Restaurant Management System built with Laravel. It
+                provides a complete solution for restaurants to manage menus, reservations, customer reviews, and
+                website settings through an intuitive admin panel.</p>
+            <p>The frontend offers an elegant, user-friendly interface for customers to browse the menu, book tables,
+                and read reviews.</p>
         </section>
 
         <!-- Features -->
         <section id="features">
             <h2>Features List</h2>
             <ul>
-                <li><strong>Dynamic Menu Management:</strong> Create categories and menu items with images, prices, and descriptions.</li>
-                <li><strong>Table Reservation System:</strong> Customers can book tables online; admins can manage reservations.</li>
-                <li><strong>Customer Reviews:</strong> Collect and display customer testimonials (with admin moderation).</li>
-                <li><strong>Multi-Theme Support:</strong> Admin can switch between multiple pre-defined themes (Elegant Midnight, Sunset Glow, etc.).</li>
+                <li><strong>Dynamic Menu Management:</strong> Create categories and menu items with images, prices, and
+                    descriptions.</li>
+                <li><strong>Table Reservation System:</strong> Customers can book tables online; admins can manage
+                    reservations.</li>
+                <li><strong>Customer Reviews:</strong> Collect and display customer testimonials (with admin
+                    moderation).</li>
+                <li><strong>Multi-Theme Support:</strong> Admin can switch between multiple pre-defined themes (Elegant
+                    Midnight, Sunset Glow, etc.).</li>
                 <li><strong>SEO Optimization:</strong> Configurable SEO titles, keywords, and descriptions.</li>
                 <li><strong>Responsive Design:</strong> Fully optimized for mobile, tablet, and desktop devices.</li>
                 <li><strong>Admin Dashboard:</strong> Comprehensive control over all website content and settings.</li>
@@ -85,11 +95,13 @@
         <section id="installation">
             <h2>Installation Guide (Local Setup)</h2>
             <div class="alert">
-                <strong>Prerequisites:</strong> ensure you have PHP >= 8.2, Composer, and MySQL installed on your machine.
+                <strong>Prerequisites:</strong> ensure you have PHP >= 8.2, Composer, and MySQL installed on your
+                machine.
             </div>
 
             <h3>1. Clone or Extract Project</h3>
-            <p>Extract the project files to your local server directory (e.g., <code>htdocs</code> or <code>www</code>).</p>
+            <p>Extract the project files to your local server directory (e.g., <code>htdocs</code> or <code>www</code>).
+            </p>
 
             <h3>2. Install Dependencies</h3>
             <pre><code>composer install</code></pre>
@@ -111,9 +123,11 @@ DB_PASSWORD=</code></pre>
             <pre><code>php artisan key:generate</code></pre>
 
             <h3>5. Setup Database</h3>
-            <p>Create a MySQL database named <code>dinepro</code> (or whatever you specified in .env). Then run migrations and seeders:</p>
+            <p>Create a MySQL database named <code>dinepro</code> (or whatever you specified in .env). Then run
+                migrations and seeders:</p>
             <pre><code>php artisan migrate --seed</code></pre>
-            <p><em>The <code>--seed</code> flag populates the database with default admin user and initial settings.</em></p>
+            <p><em>The <code>--seed</code> flag populates the database with default admin user and initial
+                    settings.</em></p>
 
             <h3>6. Link Storage</h3>
             <pre><code>php artisan storage:link</code></pre>
@@ -126,12 +140,14 @@ DB_PASSWORD=</code></pre>
         <!-- Deployment -->
         <section id="deployment">
             <h2>Shared Hosting Deployment Guide</h2>
-            
+
             <h3>1. Upload Files</h3>
-            <p>Upload all project files to the root directory of your hosting account (e.g., above <code>public_html</code>). Let's call this folder <code>dinepro_core</code>.</p>
+            <p>Upload all project files to the root directory of your hosting account (e.g., above
+                <code>public_html</code>). Let's call this folder <code>dinepro_core</code>.</p>
 
             <h3>2. Move Public Assets</h3>
-            <p>Move the contents of the <code>public</code> folder to your domain's public directory (e.g., <code>public_html</code>).</p>
+            <p>Move the contents of the <code>public</code> folder to your domain's public directory (e.g.,
+                <code>public_html</code>).</p>
 
             <h3>3. Update index.php</h3>
             <p>Edit <code>public_html/index.php</code> to point to the correct paths:</p>
@@ -153,6 +169,59 @@ APP_URL=https://your-domain.com</code></pre>
 
             <h3>6. Setup Database</h3>
             <p>Export your local database and import it via phpMyAdmin on your hosting server.</p>
+        </section>
+
+        <!-- Render Deployment -->
+        <section id="render-deployment">
+            <h2>Free Render Deployment (Demo)</h2>
+            <div class="alert">
+                <strong>Recommended for Demos:</strong> This guide sets up a free deployment that resets the database on
+                every deploy. ideal for showcasing the app.
+            </div>
+
+            <h3>1. Push to GitHub</h3>
+            <p>Ensure your project is pushed to a GitHub repository.</p>
+
+            <h3>2. Create Web Service on Render</h3>
+            <ol>
+                <li>Go to <a href="https://dashboard.render.com" target="_blank">Render Dashboard</a>.</li>
+                <li>Click <strong>New +</strong> -> <strong>Web Service</strong>.</li>
+                <li>Connect your GitHub repository.</li>
+            </ol>
+
+            <h3>3. Configure Service</h3>
+            <ul>
+                <li><strong>Name:</strong> dinepro-demo</li>
+                <li><strong>Region:</strong> Any (e.g., Singapore)</li>
+                <li><strong>Branch:</strong> main</li>
+                <li><strong>Root Directory:</strong> (Leave empty)</li>
+                <li><strong>Runtime:</strong> PHP</li>
+                <li><strong>Build Command:</strong> <code>./deploy.sh</code></li>
+                <li><strong>Start Command:</strong> <code>php artisan serve --host=0.0.0.0 --port=$PORT</code></li>
+            </ul>
+
+            <h3>4. Environment Variables</h3>
+            <p>Add the following environment variables in the Render dashboard:</p>
+            <ul>
+                <li><code>APP_KEY</code>: (Run <code>php artisan key:generate --show</code> locally and copy the value)
+                </li>
+                <li><code>APP_DEBUG</code>: true</li>
+                <li><code>APP_ENV</code>: production</li>
+                <li><code>APP_URL</code>: (Your Render URL, e.g., https://dinepro-demo.onrender.com)</li>
+                <li><code>DB_CONNECTION</code>: sqlite</li>
+                <li><code>DB_DATABASE</code>: /var/www/html/database/database.sqlite (Important: Use absolute path if
+                    possible, or relative)</li>
+            </ul>
+            <p><em>Note: Since SQLite file is ephemeral on Render free tier, data will reset on redeploy. Perfect for
+                    demos.</em></p>
+
+            <h3>5. Access Demo Admin</h3>
+            <p>Once deployed, use these dummy credentials:</p>
+            <ul>
+                <li><strong>Login URL:</strong> /admin/login</li>
+                <li><strong>Email:</strong> admin@example.com</li>
+                <li><strong>Password:</strong> password</li>
+            </ul>
         </section>
 
         <!-- Folder Structure -->
@@ -216,7 +285,7 @@ APP_URL=https://your-domain.com</code></pre>
         <section id="admin-panel">
             <h2>Admin Panel Guide</h2>
             <p>Access the admin panel at <code>/admin/login</code>.</p>
-            
+
             <h3>Default Credentials</h3>
             <ul>
                 <li><strong>Email:</strong> admin@example.com</li>
@@ -225,7 +294,8 @@ APP_URL=https://your-domain.com</code></pre>
 
             <h3>Managing Content</h3>
             <ul>
-                <li><strong>Menu Items:</strong> Go to <em>Menu Management</em> to add/edit categories and items. Ensure to verify categories are active.</li>
+                <li><strong>Menu Items:</strong> Go to <em>Menu Management</em> to add/edit categories and items. Ensure
+                    to verify categories are active.</li>
                 <li><strong>Reservations:</strong> View and manage table bookings under <em>Reservations</em>.</li>
                 <li><strong>Website Settings:</strong> Go to <em>Settings</em> to change:
                     <ul>
@@ -241,9 +311,10 @@ APP_URL=https://your-domain.com</code></pre>
         <!-- Theme Customization -->
         <section id="theme-customization">
             <h2>Theme Customization Guide</h2>
-            
+
             <h3>Switching Themes</h3>
-            <p>Log in to the Admin Panel, go to <strong>Themes</strong>, and select a predefined theme (e.g., Sunset Glow, Elegant Midnight).</p>
+            <p>Log in to the Admin Panel, go to <strong>Themes</strong>, and select a predefined theme (e.g., Sunset
+                Glow, Elegant Midnight).</p>
 
             <h3>Modifying Themes</h3>
             <p>Theme configurations are stored in <code>config/themes.php</code>.</p>
@@ -267,8 +338,9 @@ APP_URL=https://your-domain.com</code></pre>
         <!-- API -->
         <section id="api">
             <h2>API Endpoints</h2>
-            <p>The application primarily uses server-side rendering with Blade templates. However, the following routes serve as endpoints for form submissions:</p>
-            
+            <p>The application primarily uses server-side rendering with Blade templates. However, the following routes
+                serve as endpoints for form submissions:</p>
+
             <h3>Public Routes</h3>
             <table>
                 <tr>
@@ -306,7 +378,7 @@ APP_URL=https://your-domain.com</code></pre>
                 });
             });
         });
-        
+
         // Active link highlighting on scroll
         window.addEventListener('scroll', () => {
             let current = '';
@@ -316,7 +388,7 @@ APP_URL=https://your-domain.com</code></pre>
                     current = section.getAttribute('id');
                 }
             });
-            
+
             document.querySelectorAll('.nav-links a').forEach(li => {
                 li.classList.remove('active');
                 if (li.getAttribute('href').includes(current)) {
@@ -326,4 +398,5 @@ APP_URL=https://your-domain.com</code></pre>
         });
     </script>
 </body>
+
 </html>
