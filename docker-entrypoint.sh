@@ -26,11 +26,15 @@ chmod -R 775 /var/www/html/database
 echo "🧹 Clearing Config Cache..."
 rm -f .env
 php artisan config:clear
-php artisan cache:clear
 
 echo "🗄️ Running Migrations & Seeding..."
 # Force migration and seed
 php artisan migrate:fresh --seed --force
+
+echo "✨ Optimizing Application..."
+php artisan cache:clear
+php artisan view:cache
+php artisan route:cache
 
 echo "✅ Deployment Ready."
 echo "🔌 Starting Apache..."
